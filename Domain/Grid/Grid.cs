@@ -8,7 +8,6 @@ public record Grid<T>
 {
     protected virtual Type EqualityContract
     {
-        [CompilerGenerated]
         get
         {
             return typeof(Grid<T>);

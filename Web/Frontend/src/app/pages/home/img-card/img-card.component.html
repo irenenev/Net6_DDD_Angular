@@ -1,0 +1,16 @@
+<div class="uk-card uk-card-default">
+    <div class="uk-card-header">
+        <h5>{{Film.title}}</h5>
+    </div>
+    <div class="uk-card-body uk-padding-remove card-img-wrapper">
+        <a routerLink="/film/detail/{{Film.id}}">
+            <img class="uk-width-1-1" [src]="Film.poster" [alt]="Film.title"></a>
+        <div *ngIf="userLoggedIn" class="uk-button-group uk-width-1-1 uk-align-center member-icons animate">
+            <button class="uk-button uk-button-secondary" routerLink="/film/edit/{{Film.id}}">Edit</button>
+            <button class="uk-button uk-button-secondary" routerLink="/film/delete/{{Film.id}}">Delete</button>
+        </div>
+    </div>
+    <div class="uk-card-footer">
+        <h6>{{Film.genre}} - {{Film.year}}</h6>
+    </div>
+</div>

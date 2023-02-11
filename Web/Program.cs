@@ -11,43 +11,44 @@ using Microsoft.EntityFrameworkCore;
 using Web.Sevices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddResponseCompression();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "DDD API",
-        Description = "An ASP.NET Core Web API with DDD pattern"
-    });
-    options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
-    {
-        Description = "JWT Authorization header using the Bearer scheme",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
-        BearerFormat = "JWT"
-    });
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "bearerAuth"
-                }
-            },
-            new string[] {}
-        }
-    });
-});
+//builder.Services.AddSwaggerGen(options =>
+//{
+//    options.SwaggerDoc("v1", new OpenApiInfo
+//    {
+//        Version = "v1",
+//        Title = "DDD API",
+//        Description = "An ASP.NET Core Web API with DDD pattern"
+//    });
+//    options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+//    {
+//        Description = "JWT Authorization header using the Bearer scheme",
+//        Name = "Authorization",
+//        In = ParameterLocation.Header,
+//        Type = SecuritySchemeType.Http,
+//        Scheme = "bearer",
+//        BearerFormat = "JWT"
+//    });
+//    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+//    {
+//        {
+//            new OpenApiSecurityScheme
+//            {
+//                Reference = new OpenApiReference
+//                {
+//                    Type = ReferenceType.SecurityScheme,
+//                    Id = "bearerAuth"
+//                }
+//            },
+//            new string[] {}
+//        }
+//    });
+//});
 
+builder.Services.AddSpaStaticFiles(opt => opt.RootPath = "Frontend/dist");
 builder.Services.AddAuthentication(opt => opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(opt =>
 {
@@ -93,17 +94,26 @@ app.UseHsts();
 app.UseHttpsRedirection();
 app.UseResponseCompression();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
-    });
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(options =>
+//    {
+//        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+//        options.RoutePrefix = string.Empty;
+//    });
+//}
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+
+app.UseSpaStaticFiles();
+app.UseSpa(b =>
+{
+    b.Options.SourcePath = "Frontend";
+    b.UseAngularCliServer(npmScript: "start");
+});
+
 app.Run();

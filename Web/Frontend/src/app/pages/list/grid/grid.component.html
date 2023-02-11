@@ -1,0 +1,39 @@
+<form [formGroup]="filters">
+    <table class="uk-table uk-table-divider uk-table-hover uk-table-small uk-table-striped">
+        <thead>
+            <tr>
+                <th class="uk-text-center@m">
+                    <app-order [order]="grid.parameters.order" property="Id" text="Id" (changed)="load()"></app-order>
+                    <app-input-text class="uk-text-center" formControlName="Id" text="Id"></app-input-text>
+                </th>
+                <th>
+                    <app-order [order]="grid.parameters.order" property="Title" text="Title" (changed)="load()"></app-order>
+                    <app-input-text formControlName="Title" text="Title"></app-input-text>
+                </th>
+                <th>
+                    <app-order [order]="grid.parameters.order" property="Year" text="Year" (changed)="load()"></app-order>
+                    <app-input-text formControlName="Year" text="Year"></app-input-text>
+                </th>
+                <th>
+                    <app-order [order]="grid.parameters.order" property="Genre" text="Genre" (changed)="load()"></app-order>
+                    <app-input-text formControlName="Genre" text="Genre"></app-input-text>
+                </th>
+                <th *ngIf="userLoggedIn"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of grid.list">
+                <td class="uk-text-center@m"><a routerLink="/film/detail/{{item.id}}">{{ item?.id }}</a></td>
+                <td>{{ item?.title }}</td>
+                <td>{{ item?.year }}</td>
+                <td>{{ item?.genre }}</td>
+                <td *ngIf="userLoggedIn" class="uk-button-group">
+                    <button class="uk-button uk-button-primary" routerLink="/film/edit/{{item.id}}">Edit</button>
+                    <button class="uk-button uk-button-secondary" routerLink="/film/delete/{{item.id}}">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<app-page [page]="grid.parameters.page" [count]="this.grid.count" (changed)="load()"></app-page>

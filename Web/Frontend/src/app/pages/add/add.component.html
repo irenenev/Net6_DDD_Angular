@@ -1,0 +1,90 @@
+<form [formGroup]="form" class="uk-form-stacked">
+    <div class="uk-margin">
+        <label class="uk-form-label" for="title">Title</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="title" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['title'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['title'].errors" class="uk-form-danger">
+            <div *ngIf="f['title'].errors['required']">Title is required</div>
+            <div *ngIf="f['title'].errors['maxlength']">Title must not exceed 100 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="year">Year</label>
+        <div class="uk-form-controls">
+            <input type="number" formControlName="year" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['year'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['year'].errors" class="uk-form-danger">
+            <div *ngIf="f['year'].errors['required']">Year is required</div>
+            <div *ngIf="f['year'].errors['pattern']">Year must have 4 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="poster">Picture url</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="poster" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['poster'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['poster'].errors" class="uk-form-danger">
+            <div *ngIf="f['poster'].errors['required']">Picture url is required</div>
+            <div *ngIf="f['poster'].errors['maxlength']">Url must not exceed 200 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="genre">Genre</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="genre" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['genre'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['genre'].errors" class="uk-form-danger">
+            <div *ngIf="f['genre'].errors['required']">Genre is required</div>
+            <div *ngIf="f['genre'].errors['maxlength']">Genre must not exceed 50 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="actors">Actors</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="actors" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['actors'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['actors'].errors" class="uk-form-danger">
+            <div *ngIf="f['actors'].errors['maxlength']">Actors must not exceed 200 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="plot">Description</label>
+        <div class="uk-form-controls">
+            <textarea formControlName="plot" cols="30" rows="10" class="uk-width-1-1"
+                      [ngClass]="{ 'uk-form-danger': submitted && f['plot'].errors }"></textarea>
+        </div>
+        <div *ngIf="submitted && f['plot'].errors" class="uk-form-danger">
+            <div *ngIf="f['plot'].errors['maxlength']">Description must not exceed 1000 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="language">Language</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="language" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['language'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['language'].errors" class="uk-form-danger">
+            <div *ngIf="f['language'].errors['maxlength']">Language must not exceed 50 characters</div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="country">Country</label>
+        <div class="uk-form-controls">
+            <input type="text" formControlName="country" class="uk-input uk-width-1-1"
+                   [ngClass]="{ 'uk-form-danger': submitted && f['country'].errors }" />
+        </div>
+        <div *ngIf="submitted && f['country'].errors" class="uk-form-danger">
+            <div *ngIf="f['country'].errors['maxlength']">Country must not exceed 50 characters</div>
+        </div>
+    </div>
+    <div class="uk-button-group">
+        <button class="uk-button uk-button-primary uk-margin-right" routerLink="/">Home</button>
+        <button class="uk-button uk-button-secondary" (click)="add()">Add</button>
+    </div>
+</form>

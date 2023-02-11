@@ -13,11 +13,11 @@ public record Filter
         }
     }
 
-    public string Property { get; set; }
+    public string? Property { get; set; }
 
-    public string Comparison { get; set; }
+    public string? Comparison { get; set; }
 
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
     public override string ToString()
     {
@@ -74,5 +74,8 @@ public record Filter
 
     public Filter()
     {
+        //Property = string.Empty;
+        //Comparison = string.Empty;
+        //Value = string.Empty;
     }
 }

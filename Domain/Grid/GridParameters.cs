@@ -13,11 +13,11 @@ public record GridParameters
         }
     }
 
-    public Filters Filters { get; set; }
+    public Filters? Filters { get; set; }
 
-    public Order Order { get; set; }
+    public Order? Order { get; set; }
 
-    public Page Page { get; set; }
+    public Page? Page { get; set; }
 
     public override string ToString()
     {
@@ -74,8 +74,8 @@ public record GridParameters
 
     public GridParameters()
     {
-        Filters = new Filters();
-        Page= new Page();
-        Order= new Order();
+        //Filters = new Filters();
+        //Page = new Page();
+        //Order = new Order();
     }
 }

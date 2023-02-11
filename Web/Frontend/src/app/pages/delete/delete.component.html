@@ -1,0 +1,29 @@
+<div class="uk-margin">
+    <h5>{{Film.title}}</h5>
+</div>
+<div class="uk-margin">
+    <div>{{Film.year}} year</div>
+</div>
+<div class="uk-margin">
+    <img class="uk-width-1-4" [src]="Film.poster" [alt]="Film.title">
+</div>
+<div class="uk-margin">
+    <div>Genre: {{Film.genre}}</div>
+</div>
+<div class="uk-margin">
+    <div>Actors: {{Film.actors}}</div>
+</div>
+<div class="uk-margin">
+    <div>Description: {{Film.plot}}</div>
+</div>
+<div class="uk-margin">
+    <div>Language: {{Film.language}}</div>
+</div>
+<div class="uk-margin">
+    <div>Country: {{Film.country}}</div>
+</div>
+<div class="uk-button-group">
+    <button class="uk-button uk-button-primary uk-margin-right" routerLink="/">Home</button>
+    <button class="uk-button uk-button-primary uk-margin-right" routerLink="/list">List</button>
+    <button class="uk-button uk-button-danger" (click)="delete()">Delete</button>
+</div>

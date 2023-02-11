@@ -15,12 +15,11 @@ public record Order
 
     public bool Ascending { get; set; }
 
-    public string Property { get; set; }
+    public string? Property { get; set; }
 
     public Order()
     {
         Ascending = true;
-        Property = string.Empty;
     }
 
     public override string ToString()
