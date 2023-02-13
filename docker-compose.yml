@@ -1,0 +1,34 @@
+﻿version: "3.7"
+services:
+    web:
+        image: web
+        container_name: angular_web
+        restart: always
+        build:
+            context: .
+            dockerfile: web/dockerfile
+        environment:
+            - ConnectionStrings__Context=Server=angular_database;Database=FilmDb;User Id=sa;Password=test;TrustServerCertificate=true;
+        depends_on:
+            - database
+        networks:
+            - network
+        ports:
+            - 7265:80
+    database:
+        image: mcr.microsoft.com/mssql/server
+        container_name: angular_database
+        restart: always
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=test
+        networks:
+            - network
+        ports:
+            - 1433:1433
+        volumes:
+            - database:/var/opt/mssql
+networks:
+    network:
+volumes:
+    database:

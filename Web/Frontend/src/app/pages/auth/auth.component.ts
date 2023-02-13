@@ -32,4 +32,8 @@ export class AppAuthComponent {
     auth() {
         this.appAuthService.auth(this.form.value as AuthModel);
     }
+
+    register() {
+        this.appAuthService.register(this.form.value as AuthModel);
+    }
 }

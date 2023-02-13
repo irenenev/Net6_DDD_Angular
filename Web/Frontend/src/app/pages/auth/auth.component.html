@@ -9,7 +9,8 @@
                 <app-label for="password" text="Password"></app-label>
                 <app-input-password formControlName="password" text="Password"></app-input-password>
             </div>
-            <div class="uk-margin uk-text-center">
+            <div class="uk-button-group uk-text-center">
+                <button class="uk-button uk-button-primary uk-margin-right" [disabled]="form.invalid" (click)="register()">Register</button>
                 <app-button text="Sign in" [disabled]="form.invalid" (click)="auth()"></app-button>
             </div>
         </fieldset>

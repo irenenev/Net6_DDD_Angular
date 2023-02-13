@@ -21,6 +21,16 @@ export class AppAuthService {
             });
     }
 
+    register(auth: AuthModel): void {
+        this.http
+            .post("auths/register", auth)
+            .subscribe((result: any) => {
+                if (!result || !result.token) return;
+                localStorage.setItem("token", result.token);
+                this.router.navigate(["/"]);
+            });
+    }
+
     signin = () => this.router.navigate(["/login"]);
 
     signout() {
